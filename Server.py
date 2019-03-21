@@ -18,9 +18,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     # O socket que é usado para poder escutar, é diferente do socket de comunicação, por isso o conn
     while True:
         conn, addr = s.accept()
-        print('Connected by', addr)
+        print('Conectado à', addr)
         while True:
             data = conn.recv(1024)
             if not data:
                 break
-            conn.sendall(data)
+            num_letras = 'O tamanho da string recebida é : {}'.format(len(data.decode()))
+            conn.sendall(num_letras.encode())
