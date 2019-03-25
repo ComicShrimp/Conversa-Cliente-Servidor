@@ -1,7 +1,7 @@
 # Script do Cliente_ChatRoom
 
 import socket
-import threading as Thread
+import threading
 
 BUFFSIZE = 1024
 
@@ -9,14 +9,17 @@ BUFFSIZE = 1024
 def receber_msg():
     while True:
         try:
-            print(CLIENT.recv(BUFFSIZE).decode())
+            msg_rec = CLIENT.recv(BUFFSIZE).decode()
+            if msg_rec:
+                print(msg_rec)
         except OSError:
             break
 
 
 def enviar_msg():
     while True:
-        CLIENT.send(bytes(input()))
+        msg_a_enviar = input()
+        CLIENT.send(msg_a_enviar.encode())
 
 
 server_ip = '127.0.0.1'
@@ -25,10 +28,6 @@ porta = 2024
 CLIENT = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 CLIENT.connect((server_ip, porta))
 
-RECEBER_THR = Thread(target=receber_msg).start()
-ENVIAR_THR = Thread(target=enviar_msg).start()
+RECEBER_THR = threading.Thread(target=receber_msg).start()
+ENVIAR_THR = threading.Thread(target=enviar_msg).start()
 
-RECEBER_THR.join()
-ENVIAR_THR.join()
-
-CLIENT.close()
