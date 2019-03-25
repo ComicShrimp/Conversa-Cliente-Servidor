@@ -2,8 +2,8 @@
 
 import socket
 
-server_ip = '127.0.0.1'
-porta = 2024
+server_ip = '192.168.0.105'
+porta = 443
 
 # A linha abixo inicializa o socket com o protocolo ipv4(AF_INET) e tcp(SOCK_STREAM).
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:

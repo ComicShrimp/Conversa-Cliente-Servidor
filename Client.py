@@ -2,8 +2,8 @@
 
 import socket
 
-server_ip = '127.0.0.1'
-porta = 2024
+server_ip = '170.238.73.10'
+porta = 6202
 
 while True:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
