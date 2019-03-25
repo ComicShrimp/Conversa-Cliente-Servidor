@@ -18,8 +18,13 @@ def receber_msg():
 
 def enviar_msg():
     while True:
-        msg_a_enviar = input()
-        CLIENT.send(msg_a_enviar.encode())
+        msg_a_enviar = str(input())
+        if msg_a_enviar == '[exit]':
+            CLIENT.send(msg_a_enviar.encode())
+            CLIENT.close()
+            break
+        else:
+            CLIENT.send(msg_a_enviar.encode())
 
 
 server_ip = '127.0.0.1'

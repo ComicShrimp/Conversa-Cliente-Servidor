@@ -26,6 +26,8 @@ def handle_client(cliente):
 
     while True:
         msg = cliente.recv(1024)
+        if msg.decode() == '[exit]':
+            break
         msg_todos(msg, nome + " : ")
 
 
